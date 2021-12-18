@@ -1,0 +1,40 @@
+* {
+    box-sizing: border-box;
+}
+.narrowTh {
+    width: 10px;
+}
+h1 a {
+    font-style: italic;
+}
+h1 a:hover, th a:hover {
+    text-decoration: underline !important;
+}
+table, tr {
+    border-top-left-radius: 10px !important;
+    border-top-right-radius: 10px !important;
+}
+.headerCont {
+    width: 100%;
+}
+.modal-dialog, .modal-content, .modal-header {
+    border-radius: 20px !important;
+}
+.modal-header {
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+}
+.btn, input, select {
+    border-radius: 10px !important;
+}
+.topLeftThead {
+    border-top-left-radius: 10px !important;
+    border-bottom-left-radius: 10px !important;
+}
+.topRightThead {
+    border-top-right-radius: 10px !important;
+    border-bottom-right-radius: 10px !important;
+}
+#pills-empBtn, #pills-depBtn, #pills-locBtn {
+    border-radius: 15px !important;   
+}

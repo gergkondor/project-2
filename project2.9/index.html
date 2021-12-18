@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="src\css\bootstrap.min.css">
+	<link rel="stylesheet" href="src/css/styles.css" >
+  <title>Company Directory 2.9</title>
+</head>
+<body>
+  <div class="sticky-top headerCont bg-warning bg-gradient">
+		<header class="p-2 d-flex justify-content-around flex-wrap">
+			<h1 class="d-inline-block display-6">
+				<a class="text-secondary text-decoration-none" href="index.php">
+					Company Directory
+				</a>
+			</h1>
+			<!-- --------SEARCH BOX--------- -->
+			<div class="d-inline-flex float-end p-2">
+				<input type="text" id="inputBox" placeholder="Search..." name="search" class="form-control">
+				<button class="btn btn-success" id="resetBtn">
+					<img src="src\icons\arrow-repeat.svg" alt="Refresh" width="22" height="22">
+				</button>
+			</div>
+		</header>
+		<!-- ---------------TABS--------------- -->
+		<ul class="nav nav-pills nav-justified" id="pills-tab" role="tablist">
+			<li class="nav-item m-1 mx-4" role="presentation">
+				<button class="nav-link active fs-5" id="pills-empBtn" data-bs-toggle="pill" data-bs-target="#pills-employeesTab" type="button" role="tab" aria-controls="pills-employeesTab" aria-selected="true">Employees</button>
+			</li>
+			<li class="nav-item m-1 mx-4" role="presentation">
+				<button class="nav-link fs-5" id="pills-depBtn" data-bs-toggle="pill" data-bs-target="#pills-departmentTab" type="button" role="tab" aria-controls="pills-departmentTab" aria-selected="false">Departments</button>
+			</li>
+			<li class="nav-item m-1 mx-4" role="presentation">
+				<button class="nav-link fs-5" id="pills-locBtn" data-bs-toggle="pill" data-bs-target="#pills-locationTab" type="button" role="tab" aria-controls="pills-locationTab" aria-selected="false">Locations</button>
+			</li>
+		</ul>
+	</div>
+
+
+  <!-- <div id="msg"><p>data</p></div> -->
+
+
+  <div class="tab-content" id="pills-tabContent">
+      <!-- -------------- EMPOLYEES TABLE -------------- -->
+    <div class="container tab-pane fade show active" id="pills-employeesTab" role="tabpanel" aria-labelledby="pills-employeesTab">
+      <a href="#addNewEmp" id="addNewEmpBtn" data-bs-toggle="modal" class="btn btn-primary float-end m-3"><img src="src/icons/person-plus.svg" alt="Add new employee" title="Add new employee" width="20" height="20"></a>
+      <table class="table table-sm table-borderless table-hover align-middle text-center">
+        <thead class="table-secondary">
+          <th class="topLeftThead">First Name</th>
+          <th>Surname</th>
+          <th class="d-none d-md-table-cell ">Department</th>
+          <th class="narrowTh">View</th>
+          <th class="narrowTh">Edit</th>
+          <th class="narrowTh topRightThead">Delete</th>
+        </thead>
+        <tbody id="empTBody" class="allTBody"></tbody>
+      </table>
+    </div>
+
+     <!-- -------------- DEPARTMENTS TABLE -------------- -->
+     <div class="container tab-pane fade" id="pills-departmentTab" role="tabpanel" aria-labelledby="pills-departmentTab">
+      <a href="#addNewDep" data-bs-toggle="modal" class="btn btn-primary float-end m-3 ">
+        <img src="src/icons/building.svg" alt="Add new department" title="Add new department" width="20" height="20">
+        +
+      </a>
+      <table class="table table-sm table-borderless table-hover table align-middle text-center">
+        <thead id="depTHead" class="table-secondary">
+          <th class="topLeftThead">Department</th>
+          <th>Location</th>
+          <th class="narrowTh">Edit</th>
+          <th class="narrowTh topRightThead">Delete</th>
+        </thead>
+        <tbody id="depTBody" class="allTBody"></tbody>
+      </table>
+    </div>
+
+       <!-- -------------- lOCATIONS TABLE -------------- -->
+    <div class="container tab-pane fade" id="pills-locationTab" role="tabpanel" aria-labelledby="pills-locationTab">
+      <a href="#addNewLoc" data-bs-toggle="modal" class="btn btn-primary float-end m-3">
+        <img src="src/icons/geo-alt.svg" alt="Add new Location" title="Add new location" width="20" height="20">
+        +</a>
+        <table class="table table-sm table-borderless table-hover table align-middle text-center">
+          <thead class="table-secondary">
+            <th class="topLeftThead">Location</th>
+            <th class="narrowTh">Edit</th>
+            <th class="narrowTh topRightThead">Delete</th>
+          </thead>
+          <tbody id="locTBody" class="allTBody"></tbody>
+      </table>
+    </div>
+
+  </div>
+
+
+  <!-- -------- Modals -------- -->
+  <div id="modals"></div>
+  
+
+  <!-- Add New Employee Modals -->
+  <div class="modal fade" id="addNewEmp" tabindex="-1" role="dialog" aria-labelledby="addEmpModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-primary bg-gradient">
+          <h5 class="modal-title text-white" id="addEmpModalLabel">Add New Employee</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form method="POST" action="employees\newE.php">
+          <div class="modal-body">
+
+            <div class="container-fluid">
+              <div class="mb-3">
+                <label for="firstname" class="form-label">Firstname:</label>
+                <input type="text" name="firstname" class="form-control" id="firstname" required>
+              </div>
+              <div class="mb-3">
+                <label for="lastName" class="form-label">Lastname:</label>
+                <input type="text" name="lastname" class="form-control" id="lastName" required>
+              </div>
+              <div class="mb-3">
+                <label for="jobTitle" class="form-label">Job Title:</label>
+                <input type="text" name="jobtitle" class="form-control" id="jobTitle" required>
+              </div>
+              <div class="mb-3">
+                <label for="selectDep" class="form-label">Department:</label>
+                <select name="departmentID" id="selectDep" class="form-control selectDep" required>
+                  <option value="">Select department...</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="email" class="form-label">Email:</label>
+                <input type="email" class="form-control" name="email" id="email" required>
+              </div>
+            </div>
+          </div>
+          
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Save</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+    <!-- Add New Department -->
+    <div class="modal fade" id="addNewDep" tabindex="-1" role="dialog" aria-labelledby="addDepModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header bg-primary bg-gradient">
+            <h5 class="modal-title text-white" id="addDepModalLabel">Add New Department</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <form method="POST" action="departments\newD.php">
+            <div class="modal-body">
+              <div class="container-fluid">
+                <div class="mb-3">
+                  <label for="depart" class="form-label">Department Name:</label>
+                  <input type="text" name="name" class="form-control" id="depart" required>
+                </div>
+                <div class="mb-3">
+                  <label for="selectLoc" class="form-label">Location:</label>
+                  <select name="locationID" id="selectLoc" class="form-control selectLocation" required>
+                    <option value="">Select location...</option>
+                  </select>
+                </div>
+              </div> 
+            </div>
+
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary">Save</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Add New Location -->
+    <div class="modal fade" id="addNewLoc" tabindex="-1" role="dialog" aria-labelledby="addLocModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header bg-primary bg-gradient">
+            <h5 class="modal-title text-white" id="addLocModalLabel">Add New Location</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <form method="POST" action="locations\newL.php">
+            <div class="modal-body">
+
+            <div class="container-fluid">
+                <div class="mb-3">
+                  <label for="loc" class="form-label">Location Name:</label>
+                  <input type="text" name="name" class="form-control" id="loc" required>
+                </div>
+              </div> 
+
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary">Save</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+
+
+	</div>
+
+
+  <script src="src/js/jquery-3.6.0.min.js"></script>
+  <script src="src/js/bootstrap.bundle.min.js"></script>
+  <script src="src/js/scripts.js"></script>
+</body>
+</html>
